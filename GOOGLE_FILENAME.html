@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b12">
+<title>YAPORA - Discover. Download. Explore.</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #080b12;
+    --card: #111722;
+    --primary: #7357ff;
+    --text: #ffffff;
+    --muted: #929bad;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    height: 75px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #202737;
+    position: sticky;
+    top: 0;
+    background: rgba(8,11,18,.95);
+    backdrop-filter: blur(15px);
+    z-index: 100;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+    color: #aeb6c5;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.header-btn {
+    background: var(--primary);
+    padding: 12px 20px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+.hero {
+    padding: 100px 8% 85px;
+    text-align: center;
+    background:
+    radial-gradient(ellipse at 50% 0%, #37236b 0%, transparent 60%);
+}
+
+.tag {
+    display: inline-block;
+    color: #b9aaff;
+    border: 1px solid #5942a9;
+    padding: 9px 18px;
+    border-radius: 30px;
+    font-size: 12px;
+    margin-bottom: 28px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.hero h1 span {
+    background: linear-gradient(90deg,#927aff,#42c9ff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 650px;
+    margin: 24px auto;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 26px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.primary {
+    background: var(--primary);
+}
+
+.secondary {
+    border: 1px solid #424b5d;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    padding: 30px 10px 65px;
+    flex-wrap: wrap;
+}
+
+.stat h2 {
+    font-size: 27px;
+}
+
+.stat p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+section {
+    padding: 65px 8%;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.section-heading h2 {
+    font-size: 28px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 15px;
+    background: #131a27;
+    color: white;
+    border: 1px solid #293246;
+    outline: none;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+    gap: 15px;
+}
+
+.category {
+    background: var(--card);
+    border: 1px solid #202a3a;
+    padding: 24px 12px;
+    border-radius: 13px;
+    text-align: center;
+    transition: .2s;
+}
+
+.category:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+}
+
+.category .emoji {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.category p {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.apps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+    gap: 20px;
+}
+
+.app-card {
+    background: var(--card);
+    border: 1px solid #222c3c;
+    border-radius: 15px;
+    padding: 22px;
+    transition: .25s;
+}
+
+.app-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.app-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 15px;
+    background: linear-gradient(135deg,#7357ff,#20b8ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    margin-bottom: 18px;
+}
+
+.app-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.app-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.app-meta {
+    color: #9eabbe;
+    font-size: 12px;
+    margin: 15px 0;
+}
+
+.download {
+    display: block;
+    text-align: center;
+    background: #7357ff;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.developer {
+    background: linear-gradient(120deg,#17152d,#111b2b);
+    border: 1px solid #34305b;
+    border-radius: 20px;
+    padding: 55px 30px;
+    text-align: center;
+}
+
+.developer h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.developer p {
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 25px;
+    line-height: 1.8;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+}
+
+.feature {
+    background: var(--card);
+    border: 1px solid #222c3c;
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.feature h3 {
+    margin: 15px 0 10px;
+}
+
+.feature p {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+footer {
+    padding: 45px 8%;
+    border-top: 1px solid #202737;
+    color: var(--muted);
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin: 22px 0;
+    font-size: 13px;
+}
+
+footer small {
+    font-size: 12px;
+}
+
+@media(max-width:700px) {
+    nav {
+        display: none;
+    }
+
+    header {
+        padding: 0 5%;
+    }
+
+    .hero {
+        padding: 75px 6%;
+    }
+
+    .stats {
+        gap: 30px;
+    }
+
+    section {
+        padding: 45px 5%;
+    }
+
+    .developer h2 {
+        font-size: 27px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a href="#" class="logo">YAPORA<span>.</span></a>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#explore">Explore Apps</a>
+        <a href="#categories">Categories</a>
+        <a href="#developers">Developers</a>
+    </nav>
+
+    <a href="#explore" class="header-btn">Explore Store</a>
+</header>
+
+<main>
+
+<div class="hero">
+    <div class="tag">✦ YOUR INDEPENDENT ANDROID MARKETPLACE</div>
+
+    <h1>Discover. Download.<br><span>Explore.</span></h1>
+
+    <p>
+        Welcome to YAPORA APP STORE.
+        Discover exciting Android applications,
+        explore independent developers and access
+        your favourite apps in one place.
+    </p>
+
+    <div class="hero-buttons">
+        <a href="#explore" class="btn primary">Explore Applications →</a>
+        <a href="#developers" class="btn secondary">Publish Your App</a>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="stat">
+        <h2>Android</h2>
+        <p>Application Marketplace</p>
+    </div>
+
+    <div class="stat">
+        <h2>Independent</h2>
+        <p>Developer Platform</p>
+    </div>
+
+    <div class="stat">
+        <h2>Secure</h2>
+        <p>Download Verification</p>
+    </div>
+</div>
+
+<section id="categories">
+    <div class="section-heading">
+        <div>
+            <h2>Explore Categories</h2>
+            <p>Find applications that match your interests.</p>
+        </div>
+    </div>
+
+    <div class="categories">
+        <div class="category">
+            <div class="emoji">🎮</div>
+            <p>Games</p>
+        </div>
+
+        <div class="category">
+            <div class="emoji">⚡</div>
+            <p>Utilities</p>
+        </div>
+
+        <div class="category">
+            <div class="emoji">📱</div>
+            <p>Social</p>
+        </div>
+
+        <div class="category">
+            <div class="emoji">🎨</div>
+            <p>Design</p>
+        </div>
+
+        <div class="category">
+            <div class="emoji">🎬</div>
+            <p>Entertainment</p>
+        </div>
+
+        <div class="category">
+            <div class="emoji">📚</div>
+            <p>Education</p>
+        </div>
+    </div>
+</section>
+
+<section id="explore">
+    <div class="section-heading">
+        <div>
+            <h2>Discover Applications</h2>
+            <p>Explore applications available on YAPORA.</p>
+        </div>
+    </div>
+
+    <input
+        type="search"
+        id="search"
+        class="search-box"
+        placeholder="Search applications..."
+        oninput="searchApps()"
+    >
+
+    <div class="apps" id="appList">
+
+        <div class="app-card">
+            <div class="app-icon">🎮</div>
+            <h3>Featured Games</h3>
+            <p>Discover Android games from independent developers.</p>
+            <div class="app-meta">Android Application</div>
+            <a href="#" class="download">Explore</a>
+        </div>
+
+        <div class="app-card">
+            <div class="app-icon">⚙️</div>
+            <h3>Useful Utilities</h3>
+            <p>Find useful tools to improve your Android experience.</p>
+            <div class="app-meta">Android Application</div>
+            <a href="#" class="download">Explore</a>
+        </div>
+
+        <div class="app-card">
+            <div class="app-icon">🚀</div>
+            <h3>New Releases</h3>
+            <p>Explore new applications published by developers.</p>
+            <div class="app-meta">Latest Applications</div>
+            <a href="#" class="download">Explore</a>
+        </div>
+
+    </div>
+</section>
+
+<section id="developers">
+    <div class="developer">
+        <div class="tag">FOR ANDROID DEVELOPERS</div>
+
+        <h2>Build. Publish. Grow.</h2>
+
+        <p>
+            Are you an Android developer?
+            Bring your application to YAPORA.
+            Submit your APK, manage releases and
+            introduce your applications to new users.
+        </p>
+
+        <a href="#" class="btn primary">Developer Portal →</a>
+    </div>
+</section>
+
+<section>
+    <div class="section-heading">
+        <div>
+            <h2>Why YAPORA?</h2>
+            <p>A marketplace designed around developers and users.</p>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="feature">
+            <div class="emoji">🔐</div>
+            <h3>Download Verification</h3>
+            <p>Checksum verification helps users inspect downloaded APK integrity.</p>
+        </div>
+
+        <div class="feature">
+            <div class="emoji">🌍</div>
+            <h3>Independent Marketplace</h3>
+            <p>Discover applications distributed outside traditional app stores.</p>
+        </div>
+
+        <div class="feature">
+            <div class="emoji">👨‍💻</div>
+            <h3>Developer Platform</h3>
+            <p>Submit applications and manage your published releases.</p>
+        </div>
+
+        <div class="feature">
+            <div class="emoji">📦</div>
+            <h3>Download Library</h3>
+            <p>Keep track of downloaded applications and access them again.</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <a href="#" class="logo">YAPORA<span>.</span></a>
+
+    <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#explore">Applications</a>
+        <a href="#developers">Developers</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="mailto:support@yapora.com">Contact</a>
+    </div>
+
+    <small>
+        © <span id="year"></span> YAPORA APP STORE.
+        All rights reserved.
+    </small>
+
+    <p style="margin-top:12px;font-size:12px;">
+        Discover. Download. Explore.
+    </p>
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+function searchApps() {
+    const query =
+        document.getElementById("search").value.toLowerCase();
+
+    document.querySelectorAll(".app-card").forEach(card => {
+        card.style.display =
+            card.innerText.toLowerCase().includes(query)
+            ? "block"
+            : "none";
+    });
+}
+</script>
+
+</body>
+</html>
